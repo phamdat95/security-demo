@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Staff</title>
+</head>
+<body>
+<h1>Edit Staff</h1>
+<p>
+    <a th:href="@{/list}">Back list</a>
+</p>
+<fieldset>
+    <legend>Delete information</legend>
+    <form action="/delete" method="post" th:object="${staff}">
+        <input type="hidden" th:field="*{id}">
+        <table>
+            <tr>
+                <td>Code:</td>
+                <td>
+                   <a th:text="${staff.code}" th:field="*{code}"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>Group:</td>
+                <td>
+                    <a th:text="${staff.group.name}" th:field="*{group}"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>Full name:</td>
+                <td>
+                    <a th:text="${staff.fullName}" th:field="*{fullName}"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>Date:</td>
+                <td>
+                    <a th:text="${staff.date}" th:field="*{date}"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>Sex:</td>
+                <td>
+                    <a th:text="${staff.sex}" th:field="*{sex}"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>Phone Number:</td>
+                <td>
+                    <a th:text="${staff.phoneNumber}" th:field="*{phoneNumber}"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>ID code:</td>
+                <td>
+                    <a th:text="${staff.idStafff}" th:field="*{idStafff}"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>
+                    <a th:text="${staff.email}" th:field="*{email}"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td>
+                    <a th:text="${staff.address}" th:field="*{address}"></a>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Delete">
+                </td>
+            </tr>
+        </table>
+    </form>
+</fieldset>
+</body>
+</html>

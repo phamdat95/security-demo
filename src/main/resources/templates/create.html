@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Staff</title>
+</head>
+<body>
+<h1>Create Staff</h1>
+<p>
+    <a th:href="@{/list}">Back list</a>
+</p>
+<p>
+    <a th:text="${message}"></a>
+</p>
+<fieldset>
+    <legend>Fill information</legend>
+    <form action="/create-staff" method="post" th:object="${staff}">
+        <table>
+            <tr>
+                <td>Code:</td>
+                <td>
+                    <input type="text" th:field="*{code}">
+                    <a th:if="${#fields.hasErrors('code')}" th:errors="*{code}">Name Error</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Group:</td>
+                <td>
+                    <select th:field="*{group}">
+                        <option th:each="g : ${group}" th:value="${g.id}" th:text="${g.name}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Full name:</td>
+                <td>
+                    <input type="text" th:field="*{fullName}">
+                    <a th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Name Error</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Date:</td>
+                <td>
+                    <input type="text" th:field="*{date}">
+                    <a th:if="${#fields.hasErrors('date')}" th:errors="*{date}">Name Error</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Sex:</td>
+                <td>
+                    <input type="text" th:field="*{sex}">
+                    <a th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}">Name Error</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Phone Number:</td>
+                <td>
+                    <input type="text" th:field="*{phoneNumber}">
+                    <a th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Name Error</a>
+                </td>
+            </tr>
+            <tr>
+                <td>ID code:</td>
+                <td>
+                    <input type="text" th:field="*{idStafff}">
+                    <a th:if="${#fields.hasErrors('idStafff')}" th:errors="*{idStafff}">Name Error</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>
+                    <input type="text" th:field="*{email}">
+                    <a th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td>
+                    <input type="text" th:field="*{address}">
+                    <a th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Name Error</a>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Create">
+                </td>
+            </tr>
+        </table>
+    </form>
+</fieldset>
+</body>
+</html>

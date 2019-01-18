@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Staff List</title>
+</head>
+<body>
+<div sec:authorize="isAuthenticated()">
+<form method="get" action="/create">
+    <p>
+        <input type="submit" value="Add">
+    </p>
+</form>
+</div>
+<form method="get" action="/list">
+    <p>
+        <input type="text" name="search" placeholder="Fill context">
+        <input type="submit" value="Search">
+    </p>
+</form>
+<h1>Staff List</h1>
+<table border="1">
+    <tr>
+        <th>Code</th>
+        <th>Group</th>
+        <th>Full Name</th>
+        <th>Sex</th>
+        <th>Phone Number</th>
+        <th sec:authorize="isAuthenticated()">Edit</th>
+        <th sec:authorize="isAuthenticated()">Delete</th>
+    </tr>
+    <th:block th:each="staffs:${staff}">
+        <tr>
+            <td th:text="${staffs.code}"></td>
+            <td th:text="${staffs.group.name}"></td>
+            <td th:text="${staffs.fullName}"></td>
+            <td th:text="${staffs.sex}"></td>
+            <td th:text="${staffs.phoneNumber}"></td>
+            <td sec:authorize="isAuthenticated()"><a th:href="@{/edit/__${staffs.id}__}">Edit</a></td>
+            <td sec:authorize="isAuthenticated()"><a th:href="@{/delete/__${staffs.id}__}">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+<div>
+    <a th:href="@{/list(search=${search},page=${staff.number - 1})}" th:if="${staff.hasPrevious()}">Previous</a>
+    <span th:text="${staff.number}"></span>/<span th:text="${staff.totalPages}"></span>
+    <a th:href="@{/list(search=${search},page=${staff.number + 1})}" th:if="${staff.hasNext()}">Next</a>
+</div>
+</body>
+</html>
