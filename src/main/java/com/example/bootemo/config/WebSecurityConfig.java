@@ -34,10 +34,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/edit/**","delete/**","/create/**").hasRole("MEMBER")
-                .antMatchers("/edit/**","delete/**","/create/**").hasRole("ADMIN")
+                .antMatchers("/edit/**","delete/**","/create/**").hasAnyRole("MEMBER","ADMIN")
                 .and()
-                .formLogin()
+                .formLogin().defaultSuccessUrl("/list")
                 .and().exceptionHandling().and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).and().csrf().disable();
     }
